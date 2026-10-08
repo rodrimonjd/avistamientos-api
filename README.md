@@ -32,7 +32,7 @@ No necesita instalar Maven: el proyecto trae `mvnw` y `mvnw.cmd`.
 
 ```
 git clone https://github.com/rodrimonjd/avistamientos-api
-cd NOMBRE_DE_LA_CARPETA
+cd avistamientos-api
 ```
 
 2. Ejecutar la API:
