@@ -142,3 +142,34 @@ curl -i -X POST http://localhost:8080/avistamientos \
 ```
 curl -i http://localhost:8080/avistamientos/9999
 ```
+## Pruebas
+ 
+Ejecutar todas las pruebas (unitarias y de integración):
+ 
+Windows:
+ 
+```
+.\mvnw test
+```
+ 
+Resultado esperado: 26 pruebas, sin fallos.
+ 
+| Clase de prueba                           | Nivel        | Pruebas | Qué verifica                                                                 |
+|-------------------------------------------|--------------|---------|------------------------------------------------------------------------------|
+| `ValidadorDeAvistamientoTest`             | Unitario     | 13      | La regla de negocio: partición de equivalencia y valores límite (especie 2/3/50/51 caracteres, fecha de hoy y de mañana, formatos inválidos, nulos y vacíos). Usa el stub `RelojFijo`. |
+| `AvistamientoControllerIntegracionTest`   | Integración  | 12      | Los cinco endpoints por HTTP con MockMvc: códigos 200, 201, 204, 400 y 404, cuerpo de la respuesta y efecto (por ejemplo, GET después de POST o DELETE). |
+| `AvistamientosApiApplicationTests`        | Prueba de humo | 1     | Que el contexto de Spring arranca.                                          |
+ 
+Las pruebas viven en `src/test/java/com/isw2/avistamiento_api/`.
+ 
+Las pruebas de integración usan el perfil `test` (`src/test/resources/application-test.properties`), que reemplaza la base de datos de archivo por **H2 en memoria**. Así no tocan los datos de `data/`, y no hace falta detener la API para correrlas. Cada prueba prepara sus propios datos y la base se vacía antes de cada una, por lo que no dependen del orden.
+ 
+## Cobertura
+ 
+La cobertura se mide con JaCoCo. El mismo comando de las pruebas genera el reporte:
+ 
+```
+.\mvnw.test
+```
+ 
+Abra el reporte en `target/site/jacoco/index.html`.
