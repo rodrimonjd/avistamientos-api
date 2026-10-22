@@ -21,19 +21,15 @@ public class Avistamiento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotBlank
 	@Column(name="Especie")
 	private String especie;
 	
-	@NotBlank
 	@Column(name="Lugar")
 	private String lugar;
 	
-	@NotNull
-    @Schema(example = "2026-09-29")
-    private LocalDate fecha;
+    @Schema(example = "2026-10-21")
+    private String fecha;
 	
-	@NotBlank
 	@Column(name="Observador")
 	private String observador;
 	
@@ -42,15 +38,12 @@ public class Avistamiento {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Avistamiento(@NotBlank String especie, @NotBlank String lugar,
-			@NotBlank @Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}", message = "La fecha debe tener formato AAAA-MM-DD") LocalDate fecha,
-			@NotBlank String observador) {
-		super();
-		this.especie = especie;
-		this.lugar = lugar;
-		this.fecha = fecha;
-		this.observador = observador;
-	}
+	public Avistamiento(String especie, String lugar, String fecha, String observador) {
+        this.especie = especie;
+        this.lugar = lugar;
+        this.fecha = fecha;
+        this.observador = observador;
+    }
 
 
 	public Long getId() {
@@ -77,11 +70,11 @@ public class Avistamiento {
 		this.lugar = lugar;
 	}
 
-	public LocalDate getFecha() {
-		return fecha;
+	public String getFecha() {
+    	return fecha;
 	}
 
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 
